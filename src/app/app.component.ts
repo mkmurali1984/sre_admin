@@ -34,4 +34,3 @@ export class AppComponent {
     .subscribe(res => { alert("Data Updated Successfully.")});
   }
 }
-a
