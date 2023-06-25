@@ -28,10 +28,9 @@ export class AppComponent {
     });
   }
 
-  clickUpdate(id:string){
-    console.log("PropertyID: " + id);
-    //console.log(this.propertiesdata);
-     this.http.put(environment.API_URL+"Properties", id ,this.propertiesdata)
-     .subscribe(res => { alert("Data Updated Successfully.")});
+  clickUpdate(id:string){    
+    var _SelectedPropertyData = this.propertiesdata.find((x1: { id: string; }) => x1.id==id);
+    this.http.put(environment.API_URL+"Properties?id=" +id ,_SelectedPropertyData)
+    .subscribe(res => { alert("Data Updated Successfully.")});
   }
 }
