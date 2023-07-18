@@ -3,7 +3,7 @@
     <caption></caption>
     <thead class="thead-dark">
       <tr>
-        <th scope="col" style="display: none;">Id</th>
+        <th scope="col" style="display: block;">Id</th>
         <th scope="col">Person Name</th>
         <th scope="col">Address</th>
         <th scope="col">Contact Number</th>
@@ -20,7 +20,7 @@
     <tbody>
 
       <tr *ngFor="let prop of propertiesdata">
-        <td style="display: none;">{{prop.id}}</td>
+        <td style="display: block;">{{prop.pId}}</td>
         <th scope="row">{{prop.personName}}</th>
         <td>{{prop.personAddress}}</td>
         <td>{{prop.contactNumber}}</td>
@@ -31,7 +31,7 @@
         <td>{{prop.price}}</td>
         <td><input id="chkIsActive" type="checkbox" name="chkIsActive" [(ngModel)]="prop.isActive" /></td>
         <td><input id="chkIsApproved" type="checkbox" name="chkIsApproved" [(ngModel)]="prop.isApproved" /></td>
-        <td><button type="button" class="btn btn-primary" (click)="clickUpdate(prop.id)">Update</button></td>
+        <td><button type="button" class="btn btn-primary" (click)="clickUpdate(prop.pId)">Update</button></td>
       </tr>
     </tbody>
   </table>

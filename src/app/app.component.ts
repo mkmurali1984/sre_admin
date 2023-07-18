@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 
@@ -22,15 +22,26 @@ export class AppComponent {
   }
 
   getPropertiesData() {
-    this.http.get<any>(environment.API_URL+'Properties')
+    
+    let httpHeaders = new HttpHeaders();
+    httpHeaders = httpHeaders.append('ApiKey',environment.API_KEY);
+    let options = {headers : httpHeaders};
+
+    this.http.get<any>(environment.API_URL+'Properties', options)
     .subscribe(data => { 
       this.propertiesdata = data;
     });
   }
 
-  clickUpdate(id:string){    
-    var _SelectedPropertyData = this.propertiesdata.find((x1: { id: string; }) => x1.id==id);
-    this.http.put(environment.API_URL+"Properties?id=" +id ,_SelectedPropertyData)
+  clickUpdate(id:string){   
+   
+    let httpHeaders = new HttpHeaders();
+    httpHeaders = httpHeaders.append('ApiKey',environment.API_KEY);
+    let options = {headers : httpHeaders};
+
+    var _SelectedPropertyData = this.propertiesdata.find((x1: { pId: string; }) => x1.pId==id);
+    console.log('Id' + id);
+    this.http.put(environment.API_URL+"Properties?Id=" + id ,_SelectedPropertyData,options)
     .subscribe(res => { alert("Data Updated Successfully.")});
   }
 }

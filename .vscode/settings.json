@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/2c4da698-0969-40c7-8c90-b1ae77383c80/resourceGroups/srewebappadmin_group/providers/Microsoft.Web/sites/srewebappadmin",
+    "appService.deploySubpath": "."
+}
