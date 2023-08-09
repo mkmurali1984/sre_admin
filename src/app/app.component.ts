@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -9,20 +9,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  constructor(private http:HttpClient ){}
+export class AppComponent implements OnInit {
+  constructor(private http:HttpClient ){}  
 
-  
   title = 'sre_admin';
   isActive = true;
-  propertiesdata:any=[];
+  propertiesdata:any=[];  
 
-  ngOnInit():void{
-    this.getPropertiesData();
-  }
+  dtOptions: DataTables.Settings = {};
+  ngOnInit() {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      processing: true
+    };
 
-  getPropertiesData() {
-    
     let httpHeaders = new HttpHeaders();
     httpHeaders = httpHeaders.append('ApiKey',environment.API_KEY);
     let options = {headers : httpHeaders};
@@ -32,16 +33,34 @@ export class AppComponent {
       this.propertiesdata = data;
     });
   }
+    
 
-  clickUpdate(id:string){   
+
+  // ngOnInit():void{
+  //   this.getPropertiesData();
+  // }
+
+  // getPropertiesData() {
+    
+  //   let httpHeaders = new HttpHeaders();
+  //   httpHeaders = httpHeaders.append('ApiKey',environment.API_KEY);
+  //   let options = {headers : httpHeaders};
+
+  //   this.http.get<any>(environment.API_URL+'Properties', options)
+  //   .subscribe(data => { 
+  //     this.propertiesdata = data;
+  //   });
+  // }
+
+  // clickUpdate(id:string){   
    
-    let httpHeaders = new HttpHeaders();
-    httpHeaders = httpHeaders.append('ApiKey',environment.API_KEY);
-    let options = {headers : httpHeaders};
+  //   let httpHeaders = new HttpHeaders();
+  //   httpHeaders = httpHeaders.append('ApiKey',environment.API_KEY);
+  //   let options = {headers : httpHeaders};
 
-    var _SelectedPropertyData = this.propertiesdata.find((x1: { pId: string; }) => x1.pId==id);
-    console.log('Id' + id);
-    this.http.put(environment.API_URL+"Properties?Id=" + id ,_SelectedPropertyData,options)
-    .subscribe(res => { alert("Data Updated Successfully.")});
-  }
+  //   var _SelectedPropertyData = this.propertiesdata.find((x1: { pId: string; }) => x1.pId==id);
+  //   console.log('Id' + id);
+  //   this.http.put(environment.API_URL+"Properties?Id=" + id ,_SelectedPropertyData,options)
+  //   .subscribe(res => { alert("Data Updated Successfully.")});
+  // }
 }
