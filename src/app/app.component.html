@@ -1,35 +1,22 @@
-<table class="table table-striped table-bordered table-sm row-border hover" datatable [dtOptions]="dtOptions">
+<table datatable [dtOptions]="dtOptions" class="row-border hover">
   <thead>
     <tr>
-      <th scope="col" style="display: none;">Id</th>
-        <th scope="col">Person Name</th>
-        <th scope="col">Address</th>
-        <th scope="col">Contact Number</th>
-        <th scope="col">Email</th>
-        <th scope="col">Purpose</th>
-        <th scope="col">Property Type</th>
-        <th scope="col">Property Subtype</th>
-        <th scope="col">Price</th>
-        <th scope="col">Is Active</th>
-        <th scope="col">Is Approved</th>
-        <th scope="col">Operation</th>
+      <th>ID</th>
+      <th>First name</th>
+      <th>Last name</th>
     </tr>
   </thead>
-  <tbody>
-   <tr *ngFor="let prop of propertiesdata">
-    <td style="display: none;">{{prop.pId}}</td>
-    <th scope="row">{{prop.personName}}</th>
-    <td>{{prop.personAddress}}</td>
-    <td>{{prop.contactNumber}}</td>
-    <td>{{prop.emailAddress}}</td>
-    <td>{{prop.purpose}}</td>
-    <td>{{prop.propertyType}}</td>
-    <td>{{prop.propertySubtype}}</td>
-    <td>{{prop.price}}</td>
-    <td><input id="chkIsActive" type="checkbox" name="chkIsActive" [(ngModel)]="prop.isActive" /></td>
-    <td><input id="chkIsApproved" type="checkbox" name="chkIsApproved" [(ngModel)]="prop.isApproved" /></td>
-    <td><button type="button" class="btn btn-primary" >Update</button></td>
-     </tr>
+  <tbody *ngIf="propertiesdata?.length != 0">
+    <tr *ngFor="let prop of propertiesdata">
+      <td>{{ prop.pid }}</td>
+      <td>{{ prop.personName }}</td>
+      <td>{{ prop.personAddress }}</td>
+    </tr>
+  </tbody>
+  <tbody *ngIf="propertiesdata?.length == 0">
+    <tr>
+      <td colspan="3" class="no-data-available">No data!</td>
+    </tr>
   </tbody>
 </table>
 

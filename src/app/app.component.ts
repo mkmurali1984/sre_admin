@@ -3,6 +3,12 @@ import { environment } from 'src/environments/environment.development';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
+class DataTablesResponse {
+  data: any=[];
+  draw: number | undefined ;
+  recordsFiltered: number | undefined ;
+  recordsTotal: number | undefined ;
+}
 
 @Component({
   selector: 'app-root',
@@ -18,20 +24,28 @@ export class AppComponent implements OnInit {
 
   dtOptions: DataTables.Settings = {};
   ngOnInit() {
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 10,
-      processing: true
-    };
-
+    //const that = this;
     let httpHeaders = new HttpHeaders();
     httpHeaders = httpHeaders.append('ApiKey',environment.API_KEY);
     let options = {headers : httpHeaders};
-
-    this.http.get<any>(environment.API_URL+'Properties', options)
-    .subscribe(data => { 
-      this.propertiesdata = data;
-    });
+    
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      responsive: true,
+      serverSide: true,
+      processing: true,
+      ajax: (dataTablesParameters: any, callback) => {
+        this.http
+          .get<DataTablesResponse>(
+            environment.API_URL+'Properties',
+            options
+          ).subscribe(resp => {
+            this.propertiesdata = resp;
+            console.log(resp);            
+          });
+      },
+      columns: [{ data: 'pId' }, { data: 'PersonName'}, { data: 'personAddress' }]
+    };
   }
     
 
