@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { Router } from '@angular/router';
 
 class DataTablesResponse {
   data: any=[];
@@ -20,9 +20,9 @@ export class AppComponent {
   title = 'sre_admin';
   isActive = true;
   propertiesdata:any=[];  
-
+  property:any;
      
-  constructor(private http:HttpClient ){
+  constructor(private http:HttpClient,private router: Router ){
     let httpHeaders = new HttpHeaders();
     httpHeaders = httpHeaders.append('ApiKey',environment.API_KEY);
     let options = {headers : httpHeaders};
@@ -34,7 +34,7 @@ export class AppComponent {
       setTimeout(()=>{   
         $('#datatableexample').DataTable({
           pagingType: 'full_numbers',
-          pageLength: 15,
+          pageLength: 5,
           processing: true,
           lengthMenu : [5, 10, 25]
       });
@@ -43,15 +43,7 @@ export class AppComponent {
 
   }  
 
-  clickUpdate(id:string){   
-   
-    let httpHeaders = new HttpHeaders();
-    httpHeaders = httpHeaders.append('ApiKey',environment.API_KEY);
-    let options = {headers : httpHeaders};
-
-    var _SelectedPropertyData = this.propertiesdata.find((x1: { pId: string; }) => x1.pId==id);
-    console.log('Id' + id);
-    this.http.put(environment.API_URL+"Properties?Id=" + id ,_SelectedPropertyData,options)
-    .subscribe(res => { alert("Data Updated Successfully.")});
-  }
+  clickEdit(id:number){   
+    this.router.navigate(['/edit', id]);    
+  }  
 }

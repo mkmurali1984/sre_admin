@@ -1,0 +1,48 @@
+<div class="toppadding">
+<div class="div-table">
+    <div class="div-table-row">        
+        <div class="div-table-col">  <label for="personName">Person Name</label></div>
+        <div class="div-table-col"> <input type="text" [(ngModel)]="property.personName"></div>
+    </div>
+    <div class="div-table-row">
+        <div class="div-table-col">  <label for="personAddress">Address</label></div>
+        <div class="div-table-col"> <textarea type="text" id="personAddress" rows="3" name="personAddress" [(ngModel)]="property.personAddress"></textarea></div>
+    </div>
+    <div class="div-table-row">
+        <div class="div-table-col">  <label for="contactNumber">Contact Number</label></div>
+        <div class="div-table-col"> <input type="text" id="contactNumber" name="contactNumber" [(ngModel)]="property.contactNumber"></div>
+    </div>
+    <div class="div-table-row">
+        <div class="div-table-col">  <label for="emailAddress">Email Address</label></div>
+        <div class="div-table-col"> <input type="text" id="emailAddress" name="emailAddress" [(ngModel)]="property.emailAddress"></div>
+    </div>
+    <div class="div-table-row">
+        <div class="div-table-col">  <label for="purpose">Purpose</label></div>
+        <div class="div-table-col"> <input type="text" id="purpose" name="purpose" [(ngModel)]="property.purpose"></div>
+    </div>
+    <div class="div-table-row">
+        <div class="div-table-col">  <label for="propertyType">Property Type</label></div>
+        <div class="div-table-col"> <input type="text" id="propertyType" name="propertyType" [(ngModel)]="property.propertyType"></div>
+    </div>
+    <div class="div-table-row">
+        <div class="div-table-col">  <label for="propertySubtype">Property Subtype</label></div>
+        <div class="div-table-col"> <input type="text" id="propertySubtype" name="propertySubtype" [(ngModel)]="property.propertySubtype"></div>
+    </div>
+    <div class="div-table-row">
+        <div class="div-table-col">  <label for="price">Price</label></div>
+        <div class="div-table-col"> <input type="text" id="price" name="price" [(ngModel)]="property.price"></div>
+    </div>
+    <div class="div-table-row">
+        <div class="div-table-col">  <label for="isActive">Is Active</label></div>
+        <div class="div-table-col"> <input type="checkbox" id="isActive" name="isActive" [(ngModel)]="property.isActive"></div>
+    </div>    
+    <div class="div-table-row">
+        <div class="div-table-col">  <label for="isApproved">Is Approved</label></div>
+        <div class="div-table-col"> <input type="checkbox" id="isApproved" name="isApproved" [(ngModel)]="property.isApproved"></div>
+    </div>
+    <div class="div-table-row">
+        <div class="div-table-col"> <label for="btnUpdate"></label> </div>
+        <div class="div-table-col">  <button type="button" (click)="clickUpdate(id)">Update</button></div>
+    </div>
+</div>
+</div>

@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { DataTablesModule } from "angular-datatables";
+import { EditpropertiesComponent } from './editproperties/editproperties.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EditpropertiesComponent
   ],
   imports: [
     BrowserModule,
